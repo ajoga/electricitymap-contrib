@@ -22,7 +22,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install remark-validate-links
-        run: npm install --global remark-cli remark-validate-links
+        run: npm install remark-cli remark-validate-links
 
       # Runs a single command using the runners shell
       - name: Validate local links
