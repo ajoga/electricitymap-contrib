@@ -7,7 +7,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # This workflow contains a single job
   check_broken_internal_links_in_md:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -18,6 +18,7 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
+      # Install https://github.com/remarkjs/remark-validate-links
       - name: Install remark-validate-links
         run: npm install remark-cli remark-validate-links
         
