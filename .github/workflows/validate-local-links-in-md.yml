@@ -1,9 +1,6 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# Controls when the action will run. Triggers the workflow on all PR
 on:
   pull_request:
     branches: [ '**' ]
@@ -11,7 +8,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  check_broken_internal_links_in_md:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -23,8 +20,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install remark-validate-links
         run: npm install remark-cli remark-validate-links
-
-      # Runs a single command using the runners shell
+        
+      # Invoke remarks to validate INTERNAL links in md. 
+      # --frail specifies to return a non-zero error code even on warning
+      # so the github action fails when a link is invalid
       - name: Validate local links
-        run: ./node_modules/.bin/remark -u validate-links .
+        run: ./node_modules/.bin/remark -u --frail validate-links .
 
