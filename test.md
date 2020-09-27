@@ -10,9 +10,6 @@ With an image and no link, renamed hello2 :
 
 # hello2 ![Slack Status](https://slack.tmrow.com/badge.svg)
 
-With just a link, renamed hello3 : 
-
-# hello3 [chat with us](https://slack.tmrow.com)
 
 
 fds
@@ -111,6 +108,3 @@ For different ways to help improve electricityMap, have a look at the [overview 
 For different ways to help improve electricityMap, have a look at the [overview above](#hello-). Here is how to get started:
 
 For different ways to help improve electricityMap, have a look at the [overview above](#hello2-). Here is how to get started:
-
-
-For different ways to help improve electricityMap, have a look at the [overview above](#hello3-). Here is how to get started:
