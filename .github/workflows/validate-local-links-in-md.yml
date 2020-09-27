@@ -26,5 +26,5 @@ jobs:
       # --frail specifies to return a non-zero error code even on warning
       # so the github action fails when a link is invalid
       - name: Validate local links
-        run: ./node_modules/.bin/remark -u --frail validate-links .
+        run: ./node_modules/.bin/remark --frail -u validate-links .
 
