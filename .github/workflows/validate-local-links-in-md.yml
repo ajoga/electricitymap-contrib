@@ -16,15 +16,35 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      
+      # Filter on modified md files
+      # as this workflow is going to be run on PR's,
+      # we don't want to fail people's PR for someone else's broken link
+      - uses: tony84727/changed-file-filter@0.0.3
+        id: filter
+        with:
+          # head: optional head commit SHA, default to ${{ github.event.pull_request.head.sha || github.sha }}
+          # base: optional base commit SHA, default to ${{ github.event.pull_request.base.sha }} or HEAD^ if not triggered by pull_request
+
+          # filter rules in YAML format
+          # <rule-name>:
+          #  - <glob expression>
+          filters: |
+            md:
+              - '*.md'
+              - '**/*.md'
 
       # Runs a single command using the runners shell
       # Install https://github.com/remarkjs/remark-validate-links
       - name: Install remark-validate-links
+        timeout-minutes: 1
         run: npm install remark-cli remark-validate-links
         
       # Invoke remarks to validate INTERNAL links in md. 
       # --frail specifies to return a non-zero error code even on warning
       # so the github action fails when a link is invalid
       - name: Validate local links
+        timeout-minutes: 1
+        if: steps.filter.outputs.md == 'true'
         run: ./node_modules/.bin/remark --frail -u validate-links .
 
