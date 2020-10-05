@@ -44,6 +44,8 @@ def test_parser(zone, data_type, target_datetime):
         target_datetime = arrow.get(target_datetime).datetime
     start = time.time()
 
+
+
     parser = PARSER_KEY_TO_DICT[data_type][zone]
     if data_type in ['exchange', 'exchangeForecast']:
         args = zone.split('->')
